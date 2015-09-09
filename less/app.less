@@ -1,0 +1,95 @@
+@gray: #555959;
+@green: #B8FFDE;
+@green-border: 1px solid @green;
+@green-glow: #00FF88;
+@blue: #8CEAFF;
+@blue-border: 1px solid @blue;
+@blue-glow: #00C8FF;
+
+body {
+  background-color: @gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+}
+
+@-webkit-keyframes glow-green {
+  to {
+    border-color: @green-glow;
+  }
+}
+
+@-webkit-keyframes glow-blue {
+  to {
+    border-color: @blue-glow;
+  }
+}
+
+.board-container.go {
+  .board-row {
+    .board-cell {
+      color: @blue;
+      font-size: 46px;
+      width: 50px;
+      height: 50px;
+      border-right: @blue-border;
+    }
+    &:not(:first-child) {
+      border-top: @blue-border;
+    }
+  }
+
+  &.thinking .board-row {
+    -webkit-animation: glow-blue 0.5s infinite alternate;
+    .board-cell {
+      -webkit-animation: glow-blue 0.5s infinite alternate;
+    }
+  }
+}
+
+.board-container.tic-tac-toe {
+  .board-row {
+    .board-cell {
+      color: @green;
+      font-size: 72px;
+      width: 150px;
+      height: 150px;
+      border-right: @green-border;
+    }
+    &:not(:first-child) {
+      border-top: @green-border;
+    }
+  }
+
+  &.thinking .board-row {
+    .board-cell {
+    }
+  }
+}
+
+.board-container {
+  display: flex;
+  flex-direction: column;
+  .board-row {
+    display: flex;
+    width: 450px;
+    .board-cell {
+      cursor: default;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Arial';
+      &:last-child {
+        border-right: none;
+      }
+      &.clickable {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.board-container.game-over .board-row .board-cell.clickable {
+    cursor: default;
+}
